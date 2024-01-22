@@ -1,0 +1,79 @@
+ * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+
+            background-color: #ED1C5F;
+
+            padding-bottom: 10px;
+        }
+
+        .divHeader {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            width: 900px;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form > *{
+            border-style: none;
+            border: 2px solid black;
+        }
+
+        #searchProduto {
+            border-radius: 10px 0 0px 10px;
+            height: 40px;
+            border-right: none;
+
+            width: 300px;
+        }
+
+        #btnSearch {
+            border-radius: 0px 10px 10px 0px;
+            height: 40px;
+            width: 30px;
+            border-left: none;
+
+            background-color: white;
+        }
+
+        .icon{
+            width: 20px;
+        }
+
+        .nav{
+            align-items: center;
+        }
+
+        .nav-link{
+            color: black !important;
+            transition: 0.3s ease-in-out !important;
+        }
+
+        .nav-link:hover{
+            text-decoration: underline;
+            transform: scale(1.05) !important;
+        }
+        
+        .btn{
+        	 transition: 0.3s ease-in-out !important;
+        }
+
+        .btn:hover{
+        	border-color: #424649;
+        	transform: scale(1.05) !important
+        }

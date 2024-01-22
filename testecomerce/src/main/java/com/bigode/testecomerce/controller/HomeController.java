@@ -11,8 +11,6 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView(); 
 		mv.setViewName("index");
 		
-		
-		
 		return mv; 
 	}
 }
