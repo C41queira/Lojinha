@@ -11,6 +11,6 @@ import com.bigode.testecomerce.entity.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
-	@Query("SELECT o FROM Product o WHERE o.categoryProduct = :ELETRONICOS")
+	@Query("SELECT o FROM Product o WHERE o.categoryProduct = 'ELETRONICOS' ")
 	public List<Product> findByCategoriEletronicos();
 }

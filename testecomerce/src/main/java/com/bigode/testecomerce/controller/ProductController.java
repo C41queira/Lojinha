@@ -6,24 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigode.testecomerce.repository.ProductRepository;
-	
-
-
 
 @Controller
-public class HomeController {
+public class ProductController {
 	
 	@Autowired
-	private ProductRepository repository;
+	private ProductRepository repository; 
 
-	@GetMapping("/")
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView(); 
-		mv.setViewName("index");
-		mv.addObject("eletronicos", repository.findByCategoriEletronicos());
-		
-		return mv; 
-	}
-	
-	
 }
