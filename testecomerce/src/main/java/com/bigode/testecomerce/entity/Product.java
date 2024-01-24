@@ -2,7 +2,7 @@ package com.bigode.testecomerce.entity;
 
 import java.util.Objects;
 
-import com.bigode.testecomerce.entity.enums.CategoryProject;
+import com.bigode.testecomerce.entity.enums.CategoryProduct;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,10 +24,13 @@ public class Product {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "category")
-	private CategoryProject categoryProduct;
+	private CategoryProduct categoryProduct;
 	
 	@Column(name = "price")
 	private Double price; 
+	
+	@Column(name = "quantity")
+	private Integer quantity; 
 	
 	@Column(name = "info")
 	private String info;
@@ -35,15 +38,17 @@ public class Product {
 	
 	public Product() {
 	}
-	
-	public Product(Integer id, String name, CategoryProject categotyProduct, Double price, String info) {
+
+	public Product(Integer id, String name, CategoryProduct categoryProduct, Double price, Integer quantity,
+			String info) {
+		super();
 		this.id = id;
 		this.name = name;
-		this.categoryProduct = categotyProduct;
+		this.categoryProduct = categoryProduct;
 		this.price = price;
+		this.quantity = quantity;
 		this.info = info;
 	}
-
 
 
 	public Integer getId() {
@@ -58,10 +63,10 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public CategoryProject getCategotyProduct() {
+	public CategoryProduct getCategotyProduct() {
 		return categoryProduct;
 	}
-	public void setCategotyProduct(CategoryProject categotyProduct) {
+	public void setCategotyProduct(CategoryProduct categotyProduct) {
 		this.categoryProduct = categotyProduct;
 	}
 	public Double getPrice() {
@@ -75,6 +80,22 @@ public class Product {
 	}
 	public void setInfo(String info) {
 		this.info = info;
+	}
+	
+	public CategoryProduct getCategoryProduct() {
+		return categoryProduct;
+	}
+
+	public void setCategoryProduct(CategoryProduct categoryProduct) {
+		this.categoryProduct = categoryProduct;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	@Override

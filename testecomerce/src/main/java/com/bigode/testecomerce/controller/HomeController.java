@@ -21,6 +21,9 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView(); 
 		mv.setViewName("index");
 		mv.addObject("eletronicos", repository.findByCategoriEletronicos());
+		mv.addObject("moveis", repository.findByCategoriMoveis());
+		mv.addObject("informatica", repository.findByCategoriInformatica());
+		mv.addObject("gamer", repository.findByCategoriGamer());
 		
 		return mv; 
 	}

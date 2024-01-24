@@ -13,4 +13,14 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	@Query("SELECT o FROM Product o WHERE o.categoryProduct = 'ELETRONICOS' ")
 	public List<Product> findByCategoriEletronicos();
+	
+	@Query("SELECT o FROM Product o WHERE o.categoryProduct = 'MOVEIS' ")
+	public List<Product> findByCategoriMoveis();
+	
+	@Query("SELECT o FROM Product o WHERE o.categoryProduct = 'INFORMATICA' ")
+	public List<Product> findByCategoriInformatica();
+	
+	@Query("SELECT o FROM Product o WHERE o.categoryProduct = 'GAMER' ")
+	public List<Product> findByCategoriGamer();
+	
 }

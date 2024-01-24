@@ -1,0 +1,88 @@
+main{
+	background-color: #F1F1F1;
+}
+
+.carrosel{
+	position: relative;
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+.row-wrapper{
+	overflow-x:auto;  
+}
+
+.row-wrapper::-webkit-scrollbar{
+	display: none; 
+}
+
+.row{
+	flex-flow: row nowrap; 
+	padding: 10px 0;
+}
+
+.card{
+	width: 250px; 
+	align-items: center;
+	margin-left: 30px;
+	opacity: 0.5;
+	cursor: pointer;
+	transition: transform 0.3s;
+}
+
+.card:hover{
+	transform: scale(1.01);
+	box-shadow: 0 0 3px 2px #D5D5D5;
+	opacity: 1; 
+}
+
+.card-view{
+	opacity: 1;
+}
+
+.card img{
+	width: 80%;
+}
+
+hr{
+	width: 700px; 
+	margin: auto; 
+}
+
+.botao img{
+    width: 35px;
+}
+
+.voltar,
+.avancar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-size: 20px;
+    line-height: 250px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    opacity: 0.3;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+.voltar{
+    position: absolute;
+    left: 0;
+    right: auto;
+    background: linear-gradient(to left, transparent 0%, black 150%);
+}
+
+.avancar{
+    position: absolute;
+    left: auto;
+    right: 0;
+    background: linear-gradient(to right, transparent 0%, black 150%);
+}
+
+.voltar:hover, .avancar:hover{
+    opacity: 0.8;
+}
