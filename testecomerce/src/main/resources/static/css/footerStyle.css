@@ -1,0 +1,19 @@
+a{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a img{
+	width: 30px; 
+    cursor: pointer; 
+    transition: transform 0.5s;
+}
+
+a img:hover{
+	transform: scale(1.2);
+}
+
+.col-1{
+	width: 65px;
+}
