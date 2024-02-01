@@ -8,8 +8,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.bigode.testecomerce.entity.Product;
+import com.bigode.testecomerce.entity.User;
+import com.bigode.testecomerce.entity.UserClient;
+import com.bigode.testecomerce.entity.UserEmployee;
+import com.bigode.testecomerce.entity.enums.CategoryEmployee;
 import com.bigode.testecomerce.entity.enums.CategoryProduct;
 import com.bigode.testecomerce.repository.ProductRepository;
+import com.bigode.testecomerce.repository.UserRepository;
 
 @Configuration
 @Profile("test")
@@ -18,8 +23,13 @@ public class TestConfig implements CommandLineRunner{
 	@Autowired
 	private ProductRepository productRepository; 
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		/* ------------ Products --------------*/
 		
 		Product pe1 = new Product(null, "Geladeira Eletrolux", CategoryProduct.ELETRONICOS, 2256.06, 8,
 				"Geladeira duas portas com regrigeração de água da ultima geração");
@@ -71,6 +81,29 @@ public class TestConfig implements CommandLineRunner{
 		productRepository.saveAll(Arrays.asList(pg1, pg2, pg3, pg4, pg5));
 		productRepository.saveAll(Arrays.asList(pi1, pi2, pi3, pi4, pi5));
 		productRepository.saveAll(Arrays.asList(pM1, pM2, pM3, pM4, pM5)); 
+		
+
+		/* ------------ User --------------*/
+		
+		User uc1 = new UserClient(null, "Rafaela Dias", "Mem4CoM3uboo", "rafaelaalmeidadias@cuvox.de", 
+				"(62) 9980-7037", "430.782.091-64");
+		User uc2 = new UserClient(null, "Nicole Gomes", "Oovei5ophi", "nicolecunhagomes@rhyta.com", 
+				"(16) 4916-6146", "897.774.890-99");
+		User uc3 = new UserClient(null, "Rebeca Alves", "dai3Xu6shu", "rebecacorreiaalves@dayrep.com", 
+				"(48) 2034-4399", "414.423.871-73");
+		User uc4 = new UserClient(null, "Giovanna Costa", "ies4ohMeeVae", "giovannaferreiracosta@fleckens.hu", 
+				"(61) 7448-2760", "393.331.209-47");
+		User uc5 = new UserClient(null, "Isabelle Carvalho", "ahquubaep7V", "isabelleribeirocarvalho@fleckens.hu", 
+				"(67) 2152-2251", "744.573.997-10");
+		
+		User ue1 = new UserEmployee(null, "Vitór Melo", "ocahChee9oe", "E-193", CategoryEmployee.ESTAGIARIO);
+		User ue2 = new UserEmployee(null, "Manuela Cardoso", "Aech3mo6ueS", "J-085", CategoryEmployee.JUNIOR);
+		User ue3 = new UserEmployee(null, "Pedro Goncalves", "iqueis3Eide", "J-193", CategoryEmployee.JUNIOR);
+		User ue4 = new UserEmployee(null, "Tânia Correia", "AiVupoa1hah", "I-776", CategoryEmployee.INTERMEDION);
+		User ue5 = new UserEmployee(null, "Lavinia Souza", "uagh9sheQu", "S-883", CategoryEmployee.SENIOR);
+		
+		userRepository.saveAll(Arrays.asList(uc1, uc2, uc3, uc4, uc5));
+		userRepository.saveAll(Arrays.asList(ue1, ue2, ue3, ue4, ue5)); 
 		
 	}
 

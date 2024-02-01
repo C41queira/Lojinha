@@ -17,13 +17,14 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "productId")
 	private Integer id;
 	
-	@Column(name = "name")
+	@Column(name = "productName")
 	private String name; 
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "category")
+	@Column(name = "categoryProduct")
 	private CategoryProduct categoryProduct;
 	
 	@Column(name = "price")
