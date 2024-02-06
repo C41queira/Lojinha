@@ -13,8 +13,8 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "usuarios")
 public class User {
 	
 	@Id

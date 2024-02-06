@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Caick Bertin Viana">
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/cadastroStyle.css">
+
+<title>Cadastro</title>
+</head>
+<body>
+
+<!-- ------------------- Cadastro ------------------- -->
+	<div id="body" class="container sing-in">
+		<div class="msg">
+		</div>
+		<div class="containder contCadastro">
+			<div class="forms cadastro col-5">
+				<h2 class="text-center">Cadastro</h2>
+				<p class="text-center">Crie uma conta grátis</p>
+				
+				<form method="post" th:object="${newClient}" action="/salvarClient">
+					<div class="m-3">
+						<input type="text" class="form-control" placeholder="Nome" th:field="*{name}">
+					</div>
+					<div class="m-3">
+						<input type="password" class="form-control" placeholder="Senha" th:field="*{senha}">
+					</div>
+					<div class="m-3">
+						<input type="email" class="form-control" placeholder="Email" th:field="*{email}">
+					</div>
+					<div class="m-3">
+						<input type="text" class="form-control" placeholder="CPF / RG" th:field="*{document}">
+					</div>
+					<div class=" m-3">
+						<input type="text" class="form-control" placeholder="Telefone Celular" th:field="*{phone}">
+					</div>
+				
+					<div class="botoes">
+						<input type="submit" class="btn btn-primary m-3" style="width: 200px; border: none;">
+						<button class="btn btn-secondary" style="width: 100px">Voltar</button>
+					</div>
+					
+				</form>
+			</div>
+			<div class="msgCadastro text-center col-4">
+				<h2>Boas vindas cliente</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipi <br> sapien efficitur senectus nullam.</p>
+				<p>Caso já tenha cadastro</p>
+				<button id="btnLogin" class="btn btn-dark" style="width: 100px">Login</button>
+			</div>
+		
+		</div>
+		
+	<!-- ------------------- Login ------------------- -->	
+		<div id="divLogin" class="containder contLogin none">
+			<div class="forms login col-5">
+				<h2 class="text-center">Login</h2>
+				<p class="text-center">Insira suas informações</p>
+				
+				<form method="post" th:object="${loginUser}" action="/singIn">
+				
+					<div class="alert alert-danger" role="alert" th:if="${msg}">
+						<strong th:text="${msg}"></strong>
+					</div>
+					
+					<div class="m-3">
+						<input type="text" class="form-control" placeholder="Nome Completo" th:field="*{name}" th:required="required"> <!--  -->
+					</div>
+					<div class="m-3">
+						<input type="password" class="form-control" placeholder="Senha" th:field="*{senha}" > <!--  -->
+					</div>
+				
+					<div class="botoes">
+						<input type="submit" class="btn btn-primary m-3" style="width: 200px; border: none;">
+						<button class="btn btn-secondary" style="width: 100px">Voltar</button>
+					</div>
+					
+				</form>
+			</div>
+			<div class="msgLogin text-center col-4">
+				<h2>Bem vindo de Volta</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipi <br> sapien efficitur senectus nullam.</p>
+				<p>Ainda não tem cadastro ?</p>
+				<button id="btnCadastro" class="btn btn-dark" style="width: 100px">Cadastrar</button>
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	<script src="js/trocaLoginCadastro.js" type="text/javascript"></script>
+</body>
+</html>

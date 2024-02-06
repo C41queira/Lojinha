@@ -15,6 +15,7 @@ import com.bigode.testecomerce.entity.enums.CategoryEmployee;
 import com.bigode.testecomerce.entity.enums.CategoryProduct;
 import com.bigode.testecomerce.repository.ProductRepository;
 import com.bigode.testecomerce.repository.UserRepository;
+import com.bigode.testecomerce.service.UserService;
 
 @Configuration
 @Profile("test")
@@ -25,6 +26,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserService userService; 
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -102,8 +106,8 @@ public class TestConfig implements CommandLineRunner{
 		User ue4 = new UserEmployee(null, "Tânia Correia", "AiVupoa1hah", "I-776", CategoryEmployee.INTERMEDION);
 		User ue5 = new UserEmployee(null, "Lavinia Souza", "uagh9sheQu", "S-883", CategoryEmployee.SENIOR);
 		
-		userRepository.saveAll(Arrays.asList(uc1, uc2, uc3, uc4, uc5));
-		userRepository.saveAll(Arrays.asList(ue1, ue2, ue3, ue4, ue5)); 
+		userService.saveAll(Arrays.asList(uc1, uc2, uc3, uc4, uc5));
+		userService.saveAll(Arrays.asList(ue1, ue2, ue3, ue4, ue5)); 
 		
 	}
 

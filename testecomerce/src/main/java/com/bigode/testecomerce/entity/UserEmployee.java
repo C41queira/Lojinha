@@ -3,10 +3,12 @@ package com.bigode.testecomerce.entity;
 import com.bigode.testecomerce.entity.enums.CategoryEmployee;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
+@DiscriminatorValue(value = "funcionarios")
 @Table(name = "funcionario")
 public class UserEmployee extends User {
 	
