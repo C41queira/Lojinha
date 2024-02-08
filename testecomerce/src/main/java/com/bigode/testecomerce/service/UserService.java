@@ -56,9 +56,13 @@ public class UserService {
 	
 	
 	public User loginUser(String name, String senha) throws ServiceExcp{
-		
 		User userLogin = repository.loginUser(name, senha); 
-		
 		return userLogin; 
+	}
+	
+	
+	public UserClient findByIdWithCarrinho(Integer id) {
+		UserClient user = repositoryClient.findByIdWithCarrinho(id); 
+		return user; 
 	}
 }

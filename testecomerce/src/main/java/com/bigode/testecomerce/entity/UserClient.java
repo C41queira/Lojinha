@@ -1,8 +1,13 @@
 package com.bigode.testecomerce.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 
@@ -20,6 +25,12 @@ public class UserClient extends User {
 
 	@Column(name = "documentação")
 	private String document;
+	
+	
+	@ManyToMany
+	@JoinTable(name = "produtos_comprados", joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id"))
+	private List<Product> carrinho; 
 	
 	
 	public UserClient() {
@@ -55,7 +66,21 @@ public class UserClient extends User {
 
 	public void setDocument(String document) {
 		this.document = document;
+	}
+
+	public List<Product> getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(List<Product> carrinho) {
+		this.carrinho = carrinho;
 	} 
 	
-
+	
+	
+	@Override
+	public String toString() {
+		return "User: name = " + getName() + "compras= " + getCarrinho();
+	}
+	
 }

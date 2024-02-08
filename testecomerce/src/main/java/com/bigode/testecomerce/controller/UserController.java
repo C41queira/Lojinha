@@ -56,10 +56,35 @@ public class UserController {
 			mv.addObject("msg", "Usuario não encontrado. Tente novamente"); 
 		}else {
 			session.setAttribute("usuarioLogin", userLogin);
-			mv.setViewName("redirect:/");	
+			mv.setViewName("redirect:/carrinho");	
 		}
 		
 		return mv; 
 	}
+	
+	
+	
+	@GetMapping("/carrinho")
+	public ModelAndView carrinho(HttpSession session) {
+	    ModelAndView mv = new ModelAndView(); 
+	    mv.setViewName("pages/carrinho");
+	    
+	    Object userLogado = session.getAttribute("usuarioLogin"); 
+	    
+	    if(userLogado == null) {
+	    	mv.setViewName("redirect:/cadastro");
+	    }
+	    
+	    if (userLogado != null && userLogado instanceof UserClient) {
+	        UserClient userClient = service.findByIdWithCarrinho( ((UserClient) userLogado).getId() );
+	        mv.addObject("userLogado", userClient);
+	    }
+	    
+	    return mv; 
+	}
+	
+	
+	/* HttpSession session
+	 * session.getAttribute("usuarioLogin") */
 
 }

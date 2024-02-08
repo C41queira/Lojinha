@@ -1,6 +1,7 @@
 package com.bigode.testecomerce.config;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -89,7 +90,7 @@ public class TestConfig implements CommandLineRunner{
 
 		/* ------------ User --------------*/
 		
-		User uc1 = new UserClient(null, "Rafaela Dias", "Mem4CoM3uboo", "rafaelaalmeidadias@cuvox.de", 
+		UserClient uc1 = new UserClient(null, "Rafaela Dias", "Mem4CoM3uboo", "rafaelaalmeidadias@cuvox.de", 
 				"(62) 9980-7037", "430.782.091-64");
 		User uc2 = new UserClient(null, "Nicole Gomes", "Oovei5ophi", "nicolecunhagomes@rhyta.com", 
 				"(16) 4916-6146", "897.774.890-99");
@@ -99,6 +100,10 @@ public class TestConfig implements CommandLineRunner{
 				"(61) 7448-2760", "393.331.209-47");
 		User uc5 = new UserClient(null, "Isabelle Carvalho", "ahquubaep7V", "isabelleribeirocarvalho@fleckens.hu", 
 				"(67) 2152-2251", "744.573.997-10");
+		
+		List<Product> carrinho1 = Arrays.asList(pe1, pe2, pM1);
+		
+		uc1.setCarrinho(carrinho1);
 		
 		User ue1 = new UserEmployee(null, "Vitór Melo", "ocahChee9oe", "E-193", CategoryEmployee.ESTAGIARIO);
 		User ue2 = new UserEmployee(null, "Manuela Cardoso", "Aech3mo6ueS", "J-085", CategoryEmployee.JUNIOR);

@@ -1,5 +1,6 @@
 package com.bigode.testecomerce.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import com.bigode.testecomerce.entity.enums.CategoryProduct;
@@ -11,6 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Product {
@@ -35,6 +37,9 @@ public class Product {
 	
 	@Column(name = "info")
 	private String info;
+	
+	@ManyToMany(mappedBy = "carrinho")
+	private List<UserClient> userClient; 
 	
 	
 	public Product() {
@@ -98,7 +103,16 @@ public class Product {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	
+	public List<UserClient> getUserClient() {
+		return userClient;
+	}
 
+	public void setUserClient(List<UserClient> userClient) {
+		this.userClient = userClient;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
