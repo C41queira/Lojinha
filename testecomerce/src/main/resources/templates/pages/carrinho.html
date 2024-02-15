@@ -32,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr  th:each="produto, status : ${userLogado.carrinho}" th:id="'linha-' + ${status.index}">
+					<tr  th:each="produto, status : ${userLogado.carrinho}">
 						<td class="td-produto">
 							<div class="img-produto">
 								<img class="m-2" style="width: 80px" alt="Imagem do produto"src="img/imagemProduto.jpg"> 
@@ -51,7 +51,7 @@
 						</td>
 						<td class="produto-valorTotal"></td>
 						<td>
-							<button class="btn btn-secondary">x</button>
+							<a class="btn btn-secondary" th:href="@{/tirarproduto/{index}(index=${status.index})}">X</a>	
 						</td>
 					</tr>
 				</tbody>
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 		<div id="btn-pedido" class="container">
-			<button class="btn btn-secondary">Continuar Escolhendo</button>
+			<a th:href="@{/}" class="btn btn-secondary">Continuar Escolhendo</a>
 			<button class="btn btn-success">Fazer o Pedido</button>
 		</div>
 		

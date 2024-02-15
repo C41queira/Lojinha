@@ -1,14 +1,20 @@
 package com.bigode.testecomerce.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigode.testecomerce.entity.Product;
 import com.bigode.testecomerce.entity.User;
 import com.bigode.testecomerce.entity.UserClient;
 import com.bigode.testecomerce.exceptions.ServiceExcp;
@@ -83,8 +89,24 @@ public class UserController {
 	    return mv; 
 	}
 	
-	
-	/* HttpSession session
-	 * session.getAttribute("usuarioLogin") */
+	@GetMapping("/tirarproduto/{index}")
+	public String tirarProduto(@PathVariable("index") int index, HttpSession session) throws Exception {
+		
+		UserClient user = ((UserClient) session.getAttribute("usuarioLogin"));
+		
+		user = service.findByIdWithCarrinho(user.getId());
+
+	    List<Product> productUpdate = user.getCarrinho();
+	    
+	    productUpdate.remove(index);
+	    
+	    user.setCarrinho(productUpdate); 
+	    
+	    service.updateClient(user.getId(), user); 
+	    
+	    session.setAttribute("usuarioLogin", user);
+
+	    return "redirect:/carrinho"; 
+	}
 
 }

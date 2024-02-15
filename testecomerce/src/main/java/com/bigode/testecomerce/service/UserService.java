@@ -65,4 +65,21 @@ public class UserService {
 		UserClient user = repositoryClient.findByIdWithCarrinho(id); 
 		return user; 
 	}
+	
+	public UserClient updateClient(int id, UserClient user){
+		
+            UserClient entity = repositoryClient.getReferenceById(id); 
+            updateData(entity, user); 
+            return repositoryClient.save(entity); 
+        
+        
+    }
+	
+	private void updateData(UserClient entity, UserClient user) {
+        entity.setName(user.getName());
+        entity.setSenha(user.getSenha());
+        entity.setDocument(user.getDocument());
+        entity.setEmail(user.getEmail());
+        entity.setPhone(user.getPhone());
+    }
 }

@@ -78,7 +78,7 @@ td{
 	margin-top: 50px;
 }
 
-#btn-pedido button{
+#btn-pedido > *{
 	width: 250px;
 	height: 50px;
 	font-size: 1.2em;
