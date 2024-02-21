@@ -1,0 +1,50 @@
+form{
+	justify-content: flex-start;
+}
+
+.form-group{
+	border:none;
+	margin-top: 10px;
+}
+
+#filtroPreco{
+	display: flex; 
+	flex-direction: column;
+}
+
+#divPreco{
+	display:flex;
+	border: none; 
+	background-color: none; 
+	
+}
+
+#rangePreco{
+	width: 200px;
+}
+
+.form-check-input{
+	width: 18px;
+	height: 18px;
+}
+
+.imgClassificacao{
+	width: 170px;
+	height: 18px;
+	object-fit: cover; 
+	object-position: center;
+}
+
+.card{
+	cursor: pointer;
+	transition: transform 0.5s;
+}
+
+.card:hover{
+	box-shadow: 0 0 3px 2px #D5D5D5;
+	transform: scale(1.01);
+}
+
+.none{
+	display: none;
+}

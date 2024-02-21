@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.bigode.testecomerce.entity.Product;
+import com.bigode.testecomerce.entity.enums.CategoryProduct;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer>{
@@ -23,4 +24,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	@Query("SELECT o FROM Product o WHERE o.categoryProduct = 'GAMER' ")
 	public List<Product> findByCategoriGamer();
 	
+	
+	@Query("SELECT p FROM Product p WHERE p.categoryProduct = :categoria AND p.price >= :valorMinimo AND p.price <= :valorMaximo ")
+	public List<Product> findByPriceBetween(CategoryProduct categoria ,Double valorMinimo, Double valorMaximo); 
 }

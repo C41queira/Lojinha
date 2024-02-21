@@ -12,5 +12,20 @@ public class ProductController {
 	
 	@Autowired
 	private ProductRepository repository; 
+	
+	
+	@GetMapping("/eletronicos")
+	public ModelAndView pageEletronicos() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pages/eletronicos");
+		
+		if(repository.findByCategoriEletronicos().isEmpty()) {
+			mv.addObject("msg", "Não a mais produtos no estoque");
+		}else {
+			mv.addObject("filter", repository.findByCategoriEletronicos());
+		}
+		return mv; 
+	}
 
 }
