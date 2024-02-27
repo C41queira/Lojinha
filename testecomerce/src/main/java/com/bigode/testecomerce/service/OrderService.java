@@ -7,11 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.bigode.testecomerce.dto.CartDTO;
 import com.bigode.testecomerce.dto.OrderDTO;
+import com.bigode.testecomerce.entity.Cart;
 import com.bigode.testecomerce.entity.Order;
+import com.bigode.testecomerce.entity.Product;
 import com.bigode.testecomerce.exceptions.DataBaseException;
 import com.bigode.testecomerce.exceptions.ResourceNotFoundException;
+import com.bigode.testecomerce.repository.CartRepository;
 import com.bigode.testecomerce.repository.OrderRepository;
+import com.bigode.testecomerce.repository.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -20,6 +25,12 @@ public class OrderService {
 	
 	@Autowired
 	private OrderRepository orderRepository; 
+	
+	@Autowired
+	private CartRepository cartRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 	
 	public List<Order> findAll(){
         return orderRepository.findAll(); 
@@ -59,6 +70,31 @@ public class OrderService {
         }
         
     }
+    
+    public void cartFromOrder(Integer userId, Order obj) {
+    	Cart cart = cartRepository.findCartByUserId(userId); 
+    	
+    	OrderDTO dto = new OrderDTO(null, cart.getProdutos(), cart.getClientCarrinho());
+    	
+    	//Conversão de OrderDTO para Order
+    	obj = toOrder(dto);
+    	
+    	orderRepository.save(obj);
+    	
+    	//Atualizar os produtos Cart -> Order
+    	for(Product produto: dto.getListProdutos()) {
+    		produto.setCart(null);
+    		produto.setPedido(obj);
+    		productRepository.save(produto);
+    	}
+    	
+    	//Limpar a lista do Carrinho
+    	cart.getProdutos().clear();
+    	CartDTO cartdto = new CartDTO(cart);
+    	cartdto.updateValues();
+    	cartRepository.save(CartService.toCart(cartdto));
+    	
+    }
 
     private void updateData(Order entity, Order order) {
         entity.setDateTime(order.getDateTime());
@@ -67,7 +103,7 @@ public class OrderService {
         entity.setTotalValue(order.getTotalValue());
     }
     
-    public Order toOrder(OrderDTO orderDTO) {
+    public static Order toOrder(OrderDTO orderDTO) {
 	    Order order = new Order();
 	    order.setId(orderDTO.getId());
 	    order.setDateTime(orderDTO.getDateTime());

@@ -43,7 +43,7 @@ public class CartService {
     }
 
     public Cart insert(CartDTO obj){
-    	Cart c = convertCartDTOToCart(obj);
+    	Cart c = toCart(obj);
         return repository.save(c);
     }
 
@@ -76,7 +76,7 @@ public class CartService {
         entity.setTotalValue(cart.getTotalValue());
     }
 	
-	public Cart convertCartDTOToCart(CartDTO cartDTO) {
+	public static Cart toCart(CartDTO cartDTO) {
 	    Cart cart = new Cart();
 	    cart.setId(cartDTO.getId());
 	    cart.setTotalValue(cartDTO.getTotalValue());
@@ -94,16 +94,13 @@ public class CartService {
     	
     	CartDTO dto = new CartDTO(cart);
     	
-    	List<Product> produtosAtualizados = dto.getProdutos();
-    	
-    	produtosAtualizados.add(product);
-    	
-    	dto.setProdutos(produtosAtualizados);
+    	dto.getProdutos().add(product);
+    	dto.updateValues();
     	
     	product.setCart(cart);
     	productRepository.save(product);
     	
-    	cart = convertCartDTOToCart(dto);
+    	cart = toCart(dto);
     	return repository.save(cart);
     	
     }
@@ -115,16 +112,13 @@ public class CartService {
     	
     	CartDTO dto = new CartDTO(cart);
     	
-    	List<Product> produtosAtualizados = dto.getProdutos();
-    	
-    	produtosAtualizados.remove(product);
-    	
-    	dto.setProdutos(produtosAtualizados);
+    	dto.getProdutos().remove(product);
+    	dto.updateValues();	
     	
     	product.setCart(null);
     	productRepository.save(product);
     	
-    	cart = convertCartDTOToCart(dto);
+    	cart = toCart(dto);
     	return repository.save(cart);
     	
     	

@@ -78,9 +78,6 @@ public class CartDTO {
     }
 
     public void setProdutos(List<Product> produtos) {
-    	this.totalValue = 0.0;
-    	sumTotalValue(produtos);
-    	this.quantityProducts = produtos.size();
         this.produtos = produtos;
     }
     
@@ -97,4 +94,10 @@ public class CartDTO {
 		
 		this.totalValue += Double.parseDouble(df.format(valor));
 	}
+    
+    public void updateValues() {
+    	this.totalValue = 0.0;
+    	sumTotalValue(this.produtos);
+    	this.quantityProducts = this.produtos.size();
+    }
 }

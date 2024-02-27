@@ -33,7 +33,7 @@ public class ProductService {
 
 
     public Product insert(ProductDTO obj){
-    	Product c = convertProductDTOToProduct(obj);
+    	Product c = toProduct(obj);
         return repository.save(c);
     }
 
@@ -72,7 +72,7 @@ public class ProductService {
         entity.setPrice(product.getPrice());
     }
     
-    public Product convertProductDTOToProduct(ProductDTO productDTO) {
+    public static Product toProduct(ProductDTO productDTO) {
 	    Product product = new Product();
 	    
 	    product.setId(productDTO.getId());

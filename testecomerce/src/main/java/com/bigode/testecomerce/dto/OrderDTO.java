@@ -1,7 +1,10 @@
 package com.bigode.testecomerce.dto;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 import com.bigode.testecomerce.entity.Product;
 import com.bigode.testecomerce.entity.UserClient;
@@ -68,11 +71,16 @@ public class OrderDTO {
 	
 	
 	public void sumTotalValue(List<Product> produtos) {
-		
+		DecimalFormat df = new DecimalFormat("#.##", new DecimalFormatSymbols(new Locale("en", "US")));
+    	Double valor = 0.0;
+    	
 		if(!produtos.isEmpty()|| produtos != null) {
 			for(Product product: produtos) {
-				this.totalValue += product.getPrice(); 
+				valor += product.getPrice(); 
 			} 
 		}
+		
+		this.totalValue += Double.parseDouble(df.format(valor));
+
 	}
 }

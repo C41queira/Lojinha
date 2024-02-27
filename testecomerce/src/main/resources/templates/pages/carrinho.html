@@ -62,14 +62,19 @@
 			</div>
 		</section>
 		<div id="total" class="container">
-			<div id="produtoTotal" class="row row-col-auto border border-1">
+			<div th:if="${cartCheck}" id="produtoTotal" class="row row-col-auto border border-1">
 				<p class="col">Total</p>
 				<p id="valorTotalProdutos" class="col" style="text-align: right;">R$ [[${cart.totalValue}]]</p>
 			</div>
 		</div>
 		<div id="btn-pedido" class="container">
-			<a th:href="@{/}" class="btn btn-secondary">Continuar Escolhendo</a>
-			<button class="btn btn-success">Fazer o Pedido</button>
+			<a th:href="@{/}" class="btnCart btn btn-secondary">Continuar Escolhendo</a>
+			
+			<div th:if="${cartCheck}">
+				<form method="post" th:action="@{/createOrder}">
+					<button type="submit" class="btnCart btn btn-success">Fazer o Pedido</button>
+				</form>
+			</div>
 		</div>
 		<br><br>
 	</main>
