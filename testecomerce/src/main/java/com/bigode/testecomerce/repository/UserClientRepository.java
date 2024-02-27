@@ -10,8 +10,5 @@ public interface UserClientRepository extends JpaRepository<UserClient, Integer>
 	
 	@Query("select c from UserClient c where c.email = :email")
 	public UserClient findByEmail(String email);
-	
-	 @Query("select uc from UserClient uc left join fetch uc.carrinho where uc.id = :id")
-	 UserClient findByIdWithCarrinho(@Param("id") Integer id);
 
 }

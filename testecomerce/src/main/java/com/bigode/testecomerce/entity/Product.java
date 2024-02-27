@@ -1,6 +1,5 @@
 package com.bigode.testecomerce.entity;
 
-import java.util.List;
 import java.util.Objects;
 
 import com.bigode.testecomerce.entity.enums.CategoryProduct;
@@ -9,10 +8,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Product {
@@ -32,27 +33,28 @@ public class Product {
 	@Column(name = "price")
 	private Double price; 
 	
-	@Column(name = "quantity")
-	private Integer quantity; 
-	
 	@Column(name = "info")
 	private String info;
 	
-	@ManyToMany(mappedBy = "carrinho")
-	private List<UserClient> userClient; 
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id")
+	private Cart productsCart; 
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pedido_id")
+	private Order pedido; 
 	
 	
 	public Product() {
 	}
 
-	public Product(Integer id, String name, CategoryProduct categoryProduct, Double price, Integer quantity,
+	public Product(Integer id, String name, CategoryProduct categoryProduct, Double price,
 			String info) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.categoryProduct = categoryProduct;
 		this.price = price;
-		this.quantity = quantity;
 		this.info = info;
 	}
 
@@ -95,27 +97,21 @@ public class Product {
 	public void setCategoryProduct(CategoryProduct categoryProduct) {
 		this.categoryProduct = categoryProduct;
 	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
 	
-	public List<UserClient> getUserClient() {
-		return userClient;
+	public Cart getCart() {
+		return productsCart;
 	}
 
-	public void setUserClient(List<UserClient> userClient) {
-		this.userClient = userClient;
+	public void setCart(Cart cart) {
+		this.productsCart = cart;
 	}
 
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public Order getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Order pedido) {
+		this.pedido = pedido;
 	}
 
 	@Override

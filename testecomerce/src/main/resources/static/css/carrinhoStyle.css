@@ -1,5 +1,5 @@
 :root{
-	--widthProduto: 500px; 
+	--widthInfo: 200px; 
 }
 
 *, p{
@@ -28,13 +28,12 @@ td{
 .td-produto{
 	display: flex;
 	align-items: center;
-	width: var(--widthProduto);;
+	justify-content: center;
 	 
 }
 
 .img-produto{
-	margin-left: 60px; 
-	margin-right: 70px
+	margin: auto 25px;
 }
 
 .quantidade{

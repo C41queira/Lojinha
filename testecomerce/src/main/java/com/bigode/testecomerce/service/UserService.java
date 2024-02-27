@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bigode.testecomerce.dto.UserClientDTO;
 import com.bigode.testecomerce.entity.User;
 import com.bigode.testecomerce.entity.UserClient;
 import com.bigode.testecomerce.exceptions.CriptografiaException;
@@ -14,6 +15,8 @@ import com.bigode.testecomerce.exceptions.ServiceExcp;
 import com.bigode.testecomerce.repository.UserClientRepository;
 import com.bigode.testecomerce.repository.UserRepository;
 import com.bigode.testecomerce.util.Util;
+
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class UserService {
@@ -60,19 +63,10 @@ public class UserService {
 		return userLogin; 
 	}
 	
-	
-	public UserClient findByIdWithCarrinho(Integer id) {
-		UserClient user = repositoryClient.findByIdWithCarrinho(id); 
-		return user; 
-	}
-	
 	public UserClient updateClient(int id, UserClient user){
-		
             UserClient entity = repositoryClient.getReferenceById(id); 
             updateData(entity, user); 
             return repositoryClient.save(entity); 
-        
-        
     }
 	
 	private void updateData(UserClient entity, UserClient user) {
@@ -82,4 +76,18 @@ public class UserService {
         entity.setEmail(user.getEmail());
         entity.setPhone(user.getPhone());
     }
+	
+	public UserClient toUserClient(UserClientDTO userClientDTO) {
+	    UserClient userClient = new UserClient();
+	    userClient.setId(userClientDTO.getId());
+	    userClient.setName(userClientDTO.getName());
+	    userClient.setSenha(userClientDTO.getPassword());
+	    userClient.setEmail(userClientDTO.getEmail());
+	    userClient.setPhone(userClientDTO.getPhone());
+	    userClient.setDocument(userClientDTO.getDocument());
+	    userClient.setOrders(userClientDTO.getOrders());
+	    userClient.setCarrinho(userClientDTO.getCarrinho());
+	    return userClient;
+	}
+
 }

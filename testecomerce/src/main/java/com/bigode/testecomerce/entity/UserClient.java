@@ -2,12 +2,12 @@ package com.bigode.testecomerce.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 
@@ -26,11 +26,11 @@ public class UserClient extends User {
 	@Column(name = "documentação")
 	private String document;
 	
+	@OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Order> orders;
 	
-	@ManyToMany
-	@JoinTable(name = "produtos_comprados", joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id"))
-	private List<Product> carrinho; 
+	@OneToOne(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Cart carrinho; 
 	
 	
 	public UserClient() {
@@ -68,16 +68,23 @@ public class UserClient extends User {
 		this.document = document;
 	}
 
-	public List<Product> getCarrinho() {
+	public Cart getCarrinho() {
 		return carrinho;
 	}
 
-	public void setCarrinho(List<Product> carrinho) {
+	public void setCarrinho(Cart carrinho) {
 		this.carrinho = carrinho;
 	} 
 	
 	
-	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
 	@Override
 	public String toString() {
 		return "User: name = " + getName() + "compras= " + getCarrinho();

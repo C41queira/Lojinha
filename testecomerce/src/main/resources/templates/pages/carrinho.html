@@ -21,58 +21,61 @@
 		<section class="container">
 			<h3>Meu Carrinho</h3>
 			<hr>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th class="th-produto">Produto</th>
-						<th>Preço(R$)</th>
-						<th>Quantidade</th>
-						<th>Total(R$)</th>
-						<th>Remover</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr  th:each="produto, status : ${userLogado.carrinho}">
-						<td class="td-produto">
-							<div class="img-produto">
-								<img class="m-2" style="width: 80px" alt="Imagem do produto"src="img/imagemProduto.jpg"> 
-							</div>
-							<div class="name-produto">
-								[[${produto.name}]] 
-							</div>
-						</td>
-						<td class="produtoPrice">[[${produto.price}]]</td>
-						<td>
-							<div class="quantidade">
-								<button class="btn btn-dark minus"> - </button>
-								<p class="border border-dark valorQuantidade"></p> 
-								<button class="btn btn-dark plus" style="padding: 6px 15px">+</button>
-							</div> 
-						</td>
-						<td class="produto-valorTotal"></td>
-						<td>
-							<a class="btn btn-secondary" th:href="@{/tirarproduto/{index}(index=${status.index})}">X</a>	
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div th:if="${not cartCheck}">
+			    <div class="d-flex align-items-center justify-content-center" style="height: 200px" th:object="${msg}">
+			        <h3 th:text="${msg}"></h3>
+			    </div>
+			</div>
+			
+			<div th:if="${cartCheck}" >
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th class="th-produto">Produto</th>
+							<th>Informação</th>
+							<th>Preço</th>
+							<th>Remover</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="produto, status : ${cart.produtos}">
+							<td class="td-produto">
+								<div class="img-produto">
+									<img class="m-2" style="width: 140px" alt="Imagem do produto"src="img/imagemProduto.jpg"> 
+								</div>
+								
+							</td>
+							<td>
+								<p style="font-size: 1.1em"><strong>[[${produto.name}]]</strong></p>
+								[[${produto.info}]]
+							</td>
+							<td class="produtoPrice">R$: [[${produto.price}]]</td>
+							<td>
+							<form method="post" th:action="@{'/removeProduct/' + ${produto.id}}">
+								<button type="submit" class="btn btn-secondary">X</button>	
+							</form>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</section>
 		<div id="total" class="container">
 			<div id="produtoTotal" class="row row-col-auto border border-1">
 				<p class="col">Total</p>
-				<p id="valorTotalProdutos" class="col" style="text-align: right;">R$ </p>
+				<p id="valorTotalProdutos" class="col" style="text-align: right;">R$ [[${cart.totalValue}]]</p>
 			</div>
 		</div>
 		<div id="btn-pedido" class="container">
 			<a th:href="@{/}" class="btn btn-secondary">Continuar Escolhendo</a>
 			<button class="btn btn-success">Fazer o Pedido</button>
 		</div>
-		
 		<br><br>
 	</main>
 	
 	<div th:replace="fragmentos/fragments :: footer"></div>
 	
-	<script type="text/javascript" src="js/scriptsCarrinhos.js"></script>
+	<!--   <script type="text/javascript" src="js/scriptsCarrinhos.js"></script> -->
 </body>
 </html>
