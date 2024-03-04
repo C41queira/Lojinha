@@ -16,7 +16,7 @@
 <body>
 
     <header th:fragment="header">
-        <h2 class="text-center col-md-2">Bigodes <br> Commerce</h2>
+        <h2 class="text-center col-md-2"><a th:href="@{/}" style="color: inherit; text-decoration: none;">Bigodes <br> Commerce</a></h2>
 
         <div>
             <div class="divHeader" id="mainHeader">
@@ -46,24 +46,54 @@
                         <a class="nav-link" href="#">Ofertas diarias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Eletronicos</a>
+                        <a class="nav-link" th:href="@{/eletronicos}">Eletronicos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dispositivos Moveis</a>
+                        <a class="nav-link" th:href="@{/moveis}">Dispositivos Moveis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Informatica</a>
+                        <a class="nav-link"th:href="@{/informatica}">Informatica</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos Gamers</a>
+                        <a class="nav-link" th:href="@{/gamer}">Produtos Gamers</a>
                     </li>
                 </ul>
 
             </div>
         </div>
-
-
     </header>
+    
+    <aside class="sideBar noneSideBar" th:fragment="menu">
+    	<div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+    		<h4 class="m-2">Menu</h4>
+    		<img class="imgNavBar" id="closeSideBar" alt="" src="img/sideBar/fechar-o-simbolo-da-cruz-em-um-circulo.png">
+    	</div>
+    	<br>
+    	<nav class="navbar">
+    		<button class="btnNavBar">
+    			<img class="imgNavBar" alt="" src="img/sideBar/do-utilizador.png">
+    			<span>Conta</span>
+    		</button>
+    	</nav>
+    	<nav class="navbar">
+    		<button class="btnNavBar">
+    			<img class="imgNavBar" alt="" src="img/sideBar/editar.png">
+    			<span>Editar Informações</span>
+    		</button>
+    	</nav>
+    	<nav class="navbar">
+    		<button class="btnNavBar">
+    			<img class="imgNavBar" alt="" src="img/sideBar/acompanhar.png">
+    			<span>Acompanhar Pedidos</span>
+    		</button>
+    	</nav>
+    	<nav class="navbar">
+    		<button class="btnNavBar">
+    			<img class="imgNavBar" alt="" src="img/sideBar/comentario-alt.png">
+    			<span>Fale Conosco</span>
+    		</button>
+    	</nav>
+    </aside>
 
     <footer class="mt-1" th:fragment="footer">
     <br>

@@ -27,5 +27,46 @@ public class ProductController {
 		}
 		return mv; 
 	}
+	
+	@GetMapping("/gamer")
+	public ModelAndView pageGamer() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pages/gamer");
+		
+		if(repository.findByCategoriEletronicos().isEmpty()) {
+			mv.addObject("msg", "Não a mais produtos no estoque");
+		}else {
+			mv.addObject("filter", repository.findByCategoriGamer());
+		}
+		return mv; 
+	}
+	
+	@GetMapping("/informatica")
+	public ModelAndView pageInformatica() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pages/informatica");
+		
+		if(repository.findByCategoriEletronicos().isEmpty()) {
+			mv.addObject("msg", "Não a mais produtos no estoque");
+		}else {
+			mv.addObject("filter", repository.findByCategoriInformatica());
+		}
+		return mv; 
+	}
+	@GetMapping("/moveis")
+	public ModelAndView pageMoveis() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pages/moveis");
+		
+		if(repository.findByCategoriEletronicos().isEmpty()) {
+			mv.addObject("msg", "Não a mais produtos no estoque");
+		}else {
+			mv.addObject("filter", repository.findByCategoriMoveis());
+		}
+		return mv; 
+	}
 
 }

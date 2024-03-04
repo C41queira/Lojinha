@@ -1,0 +1,85 @@
+.sideBar{
+	position: fixed; 
+	right: 0;
+	
+	display: flex; 
+	flex-direction: column;
+	align-items: flex-start;
+	z-index: 4; 
+	
+	width: 240px;
+	height: 100%; 
+	
+	border-left: 1px solid black;
+	
+	padding: 20px 15px;
+	
+	background-color: #F0F0F0;
+	
+}
+
+#closeSideBar{
+	transition: all 0.3s; 
+	cursor: pointer;
+}
+
+#closeSideBar:hover{
+	transform: scale(1.1);
+}
+
+.noneSideBar{
+	right: -240px;
+}
+
+
+.visible{
+	animation: first-sideTransition 1.5s forwards;
+}
+
+.hidden{
+	animation: invisible 1.5s ;
+}
+	
+.btnNavBar{
+	border: none; 
+	transition: all 0.3s; 
+	
+	padding: 10px;
+	
+	border-radius: 15px;
+}
+
+.btnNavBar:hover{
+	transform: scale(1.05);
+}
+
+.imgNavBar{
+	height: 20px;
+	margin-right: 5px;
+}
+
+
+/* Animação CSS */
+
+@keyframes first-sideTransition{
+	0%{
+		right:-240px; 
+	}
+	
+	100%{
+		right:0;
+	}
+}
+
+
+
+@keyframes invisible{
+	0%{
+		right:0; 
+	}
+	
+	100%{
+		right:-240px;
+	}
+}
+
