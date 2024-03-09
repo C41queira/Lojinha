@@ -1,7 +1,6 @@
 package com.bigode.testecomerce.service;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +124,7 @@ public class OrderService {
 	    order.setTotalValue(orderDTO.getTotalValue());
 	    order.setListProdutos(orderDTO.getListProdutos());
 	    order.setDestinatario(orderDTO.getDestinatario());
+	    order.setCategoryShipping(orderDTO.getCategoryShipping());
 	    return order;
 	}
 }

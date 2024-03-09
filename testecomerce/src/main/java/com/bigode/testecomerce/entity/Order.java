@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.bigode.testecomerce.entity.enums.CategoryShipping;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +35,10 @@ public class Order {
 	@Column(name = "order_price")
 	private Double totalValue = 0.0; 
 	
+	@Enumerated
+	@Column(name="status_entrega")
+	private CategoryShipping categoryShipping; 
+	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Product> listProdutos;
 	
@@ -43,13 +50,15 @@ public class Order {
 		super();
 	}
 
-	public Order(Integer id, List<Product> listProdutos, UserClient destinatario, Double totalValue, LocalDateTime dateTime) {
+	public Order(Integer id, List<Product> listProdutos, UserClient destinatario, Double totalValue, 
+			LocalDateTime dateTime, CategoryShipping categoryShipping) {
 		super();
 		this.id = id;
 		this.dateTime = dateTime;
 		this.destinatario = destinatario;
 		this.totalValue = totalValue; 
-		this.listProdutos = listProdutos; 
+		this.listProdutos = listProdutos;
+		this.categoryShipping = categoryShipping; 
 	}
 
 	public Integer getId() {
@@ -90,6 +99,14 @@ public class Order {
 
 	public void setDestinatario(UserClient destinatario) {
 		this.destinatario = destinatario;
+	}
+
+	public CategoryShipping getCategoryShipping() {
+		return categoryShipping;
+	}
+
+	public void setCategoryShipping(CategoryShipping categoryShipping) {
+		this.categoryShipping = categoryShipping;
 	}
 
 	@Override
