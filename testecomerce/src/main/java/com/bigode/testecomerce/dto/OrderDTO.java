@@ -1,32 +1,44 @@
-package com.bigode.testecomerce.dto;
+	package com.bigode.testecomerce.dto;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
+import com.bigode.testecomerce.entity.Order;
 import com.bigode.testecomerce.entity.Product;
 import com.bigode.testecomerce.entity.UserClient;
 
 public class OrderDTO {
 	
     private Integer id;
-    private LocalDateTime dateTime;
+    private String dateTime;
     private Double totalValue = 0.0;
     private List<Product> listProdutos;
     private UserClient destinatario;
+    
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy h:mma", new Locale("pt", "BR"));
 
     public OrderDTO() {
     }
 
     public OrderDTO(Integer id, List<Product> listProdutos, UserClient destinatario) {
         this.id = id;
-        this.dateTime = LocalDateTime.now();
+        this.dateTime = LocalDateTime.now().format(formatter);
         this.destinatario = destinatario;
         this.listProdutos = listProdutos;
         sumTotalValue(listProdutos);
         
+    }
+    
+    public OrderDTO(Order order) {
+    	this.id = order.getId();
+    	this.dateTime = order.getDateTime().format(formatter);
+        this.destinatario = order.getDestinatario();
+        this.listProdutos = order.getListProdutos();
+        this.totalValue = order.getTotalValue();
     }
 
     public Integer getId() {
@@ -37,11 +49,11 @@ public class OrderDTO {
         this.id = id;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

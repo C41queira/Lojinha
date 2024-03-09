@@ -1,6 +1,11 @@
 package com.bigode.testecomerce.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +46,16 @@ public class OrderService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id)); 
     }
 
-    public List<Order> findOrdersByUserClient(int id){
-        return orderRepository.findOrdersByUserId(id); 
+    public List<OrderDTO> findOrdersByUserClient(int id){
+    	List<Order> listOrder = orderRepository.findOrdersByUserId(id);
+    	List<OrderDTO> listDTO = new ArrayList<OrderDTO>();
+    	
+    	for(Order order: listOrder) {
+    		OrderDTO dto = new OrderDTO(order);
+    		listDTO.add(dto);
+    	}
+    	
+    	return listDTO; 
     }
 
     public Order insert(Order obj){
@@ -104,9 +117,11 @@ public class OrderService {
     }
     
     public static Order toOrder(OrderDTO orderDTO) {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy h:mma", new Locale("pt", "BR"));
+    	
 	    Order order = new Order();
 	    order.setId(orderDTO.getId());
-	    order.setDateTime(orderDTO.getDateTime());
+	    order.setDateTime(LocalDateTime.parse(orderDTO.getDateTime(), formatter));
 	    order.setTotalValue(orderDTO.getTotalValue());
 	    order.setListProdutos(orderDTO.getListProdutos());
 	    order.setDestinatario(orderDTO.getDestinatario());

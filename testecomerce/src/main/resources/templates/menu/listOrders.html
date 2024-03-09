@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Caick Bertin Viana">
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/headerStyle.css">
+<link rel="stylesheet" href="css/indexStyle.css">
+<link rel="stylesheet" href="css/footerStyle.css">
+<link rel="stylesheet" href="css/sideBarStyle.css">
+<link rel="stylesheet" href="css/listOrderStyle.css">
+
+<title>Pedidos</title>
+</head>
+<body>
+
+	<div th:replace="fragmentos/fragments :: header"></div>
+	<div th:replace="fragmentos/fragments :: menu"></div>
+
+	<main style="margin-top: 95px;">
+	
+	
+		<div th:if="${not orderCheck}">
+			<h3 th:text="${msg}"></h3>
+		</div>
+		
+		<section th:if="${orderCheck}">
+			<h3 class="offset-3">Seus pedidos</h3>
+			
+			<br><hr style="width: 800px"><br>
+			
+			<div class="pedido" th:each="order : ${listaPedidos}">
+				
+				<div th:each="productsOrder : ${order.listProdutos}">
+					<div class="rowPedido mt-4">
+						<p>Código do pedido:  [[${order.id}]]</p>
+						<p class="mb-2">[[${order.dateTime}]]</p>
+						<hr>
+						<div class="row row-cols-auto mt-2"> 
+							<img class="col" alt="" src="img/imagemProduto.jpg" style="width: 120px">
+							<div class="col">
+								<p>[[${productsOrder.name}]]</p>
+								<p>R$: [[${productsOrder.price}]]</p>
+								<br>
+								<p>Status de envio: ########</p>
+							</div>
+							<div class="col offset-4">
+								<button class="btn btn-primary">Ver produto</button> <br><br>
+								<button class="btn btn-secondary">Comprar mais</button>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="fragmentos/fragments :: footer"></div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/scriptMenu.js"></script>
+</body>
+</html>
