@@ -129,6 +129,11 @@ body{
 	animation: slideup 2s; 
 }
 
+.alert{
+	font-size: 0.8em;
+	padding: 8px;
+}
+
 /* Animação Css*/
 
 @keyframes slidein{

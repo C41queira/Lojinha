@@ -22,7 +22,12 @@
 				<h2 class="text-center">Cadastro</h2>
 				<p class="text-center">Crie uma conta grátis</p>
 				
-				<form method="post" th:object="${newClient}" action="/salvarClient">
+				<div class="alert alert-danger" role="alert" th:if="${msgCadastro}">
+					<strong>[[${msgCadastro}]]</strong>
+				</div>
+				
+				<form method="post" th:object="${newClient}" th:action="@{/salvarClient}">
+					
 					<div class="m-3">
 						<input type="text" class="form-control" placeholder="Nome" th:field="*{name}">
 					</div>
@@ -61,12 +66,11 @@
 				<h2 class="text-center">Login</h2>
 				<p class="text-center">Insira suas informações</p>
 				
-				<form method="post" th:object="${loginUser}" action="/singIn">
+				<div class="alert alert-danger" role="alert" th:if="${msgLogin}">
+					<strong>[[${msgLogin}]]</strong>
+				</div>
 				
-					<div class="alert alert-danger" role="alert" th:if="${msg}">
-						<strong th:text="${msg}"></strong>
-					</div>
-					
+				<form method="post" th:object="${loginUser}" th:action="@{/singIn}">
 					<div class="m-3">
 						<input type="text" class="form-control" placeholder="Nome Completo" th:field="*{name}" th:required="required"> <!--  -->
 					</div>

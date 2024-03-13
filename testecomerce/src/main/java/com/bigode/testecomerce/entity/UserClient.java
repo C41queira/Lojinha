@@ -10,6 +10,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @DiscriminatorValue(value = "cliente")
@@ -24,6 +25,7 @@ public class UserClient extends User {
 	private String phone; 
 
 	@Column(name = "documentação")
+	@NotEmpty(message = "Preencher área de documentação")
 	private String document;
 	
 	@OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL, orphanRemoval = true)

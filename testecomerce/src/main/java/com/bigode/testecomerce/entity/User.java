@@ -2,7 +2,6 @@ package com.bigode.testecomerce.entity;
 
 import java.util.Objects;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,10 +24,13 @@ public class User {
 	private Integer id;
 	
 	@Column(name = "userName")
-	@Nonnull
+	@Size(min = 7, message = "Preencher com nome completo")
+	@NotEmpty(message = "Nome do usuario não pode ser nulo")
 	private String name; 
 	
 	@Column(name = "senha")
+	@Size(min = 8, message = "Mínimo de 8 caracteres na sua senha")
+	@NotEmpty(message = "Campo da senha não pode ser nulo")
 	private String senha; 
 	
 	
