@@ -29,13 +29,13 @@
        width: 900px;
    }
 
-   form {
+   #formHeader {
        display: flex;
        align-items: center;
        justify-content: center;
    }
 
-   form > *{
+   #formHeader > *{
        border-style: none;
        border: 2px solid black;
    }

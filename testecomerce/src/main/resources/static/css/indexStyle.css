@@ -25,7 +25,6 @@ main{
 
 .card{
 	width: 250px; 
-	align-items: center;
 	margin-left: 30px;
 	opacity: 0.5;
 	cursor: pointer;
@@ -36,6 +35,13 @@ main{
 	transform: scale(1.01);
 	box-shadow: 0 0 3px 2px #D5D5D5;
 	opacity: 1; 
+}
+
+.formsProdSession{
+	display: flex;
+	align-items: center;
+	text-align: center;
+	flex-direction: column;
 }
 
 .card-view{

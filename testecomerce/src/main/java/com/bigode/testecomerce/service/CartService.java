@@ -87,9 +87,9 @@ public class CartService {
 	    return cart;
 	}
 	
-	public Cart addOnCart(Integer cartId, Integer productId) {
+	public Cart addOnCart(Integer userId, Integer productId) {
 		
-    	Cart cart = repository.findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
+    	Cart cart = repository.findCartByUserId(userId);
     	Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     	
     	CartDTO dto = new CartDTO(cart);

@@ -22,7 +22,7 @@ public class OrderDTO {
     private UserClient destinatario;
     private CategoryShipping categoryShipping; 
     
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy h:mma", new Locale("pt", "BR"));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mma", new Locale("pt", "BR"));
 
     public OrderDTO() {
     }

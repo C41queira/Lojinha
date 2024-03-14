@@ -2,19 +2,16 @@ package com.bigode.testecomerce.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigode.testecomerce.dto.CartDTO;
-import com.bigode.testecomerce.entity.Cart;
 import com.bigode.testecomerce.entity.UserClient;
 import com.bigode.testecomerce.service.CartService;
 
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 
 @Controller
 public class CartController {
@@ -57,5 +54,36 @@ public class CartController {
 		service.removeProductOnCart(client.getId(), productId);
 		
 		return "redirect:/carrinho";
+	}
+	
+
+	@PostMapping("/addOnCart/{productId}")
+	public ModelAndView addOnCart(HttpSession session, @PathVariable Integer productId) {
+		ModelAndView mv = new ModelAndView(); 
+		UserClient client = (UserClient) session.getAttribute("usuarioLogin");
+		
+		if(client != null) {
+			service.addOnCart(client.getId(), productId);
+			mv.setViewName("redirect:/");
+		}else {
+			mv.setViewName("redirect:/cadastro");
+		}
+		
+		return mv; 
+	}
+	
+	@PostMapping("/addAndGoCart/{productId}")
+	public ModelAndView addAndGoCart(HttpSession session, @PathVariable Integer productId) {
+		ModelAndView mv = new ModelAndView(); 
+		UserClient client = (UserClient) session.getAttribute("usuarioLogin");
+		
+		if(client != null) {
+			service.addOnCart(client.getId(), productId);
+			mv.setViewName("redirect:/carrinho");
+		}else {
+			mv.setViewName("redirect:/cadastro");
+		}
+		
+		return mv; 
 	}
 }

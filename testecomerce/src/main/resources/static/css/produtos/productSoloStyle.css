@@ -1,0 +1,38 @@
+#divProduto{
+	background-color: white;
+	
+	margin-top: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	
+	border-radius: 8px; 
+}
+
+.columMiddle{
+	padding-left: 15px;
+	padding-right: 15px;
+	
+	width: 500px;
+}
+
+.columDireita{
+	display: flex;
+	flex-direction: column;
+	
+	border-left: solid 1px #BFBFBF;
+	
+	padding-left: 25px;
+	padding-top: 25px;
+}
+
+#estoque{
+	width: 180px;
+	margin: 10px auto 20px auto;
+}
+
+.btn{
+	width: 180px;
+	
+	margin-top: 10px;
+}
+
