@@ -16,8 +16,6 @@ import com.bigode.testecomerce.repository.UserClientRepository;
 import com.bigode.testecomerce.repository.UserRepository;
 import com.bigode.testecomerce.util.Util;
 
-import jakarta.servlet.http.HttpSession;
-
 @Service
 public class UserService {
 	
@@ -63,9 +61,9 @@ public class UserService {
 		return userLogin; 
 	}
 	
-	public UserClient updateClient(int id, UserClient user){
-            UserClient entity = repositoryClient.getReferenceById(id); 
-            updateData(entity, user); 
+	public UserClient updateClient(UserClientDTO userDto){
+            UserClient entity = repositoryClient.getReferenceById(userDto.getId()); 
+            updateData(entity, toUserClient(userDto)); 
             return repositoryClient.save(entity); 
     }
 	

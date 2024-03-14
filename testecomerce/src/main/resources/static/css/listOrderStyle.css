@@ -1,8 +1,13 @@
 p{ padding: 0; margin: 0}
 
+#listOrdes{
+	display: flex; 
+	flex-direction: column-reverse; 
+}
+
 .pedido{
 	width: 800px;
-	margin: 10px auto; 
+	margin: 10px auto;
 }
 
 .rowPedido{
@@ -15,4 +20,18 @@ p{ padding: 0; margin: 0}
 	padding: 20px 30px;
 	
 	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.divGeral{
+	justify-content: space-between;
+}
+
+.divButtons{
+	display:flex;
+	flex-direction: column;
+}
+
+.btnMain{
+	width: 130px;
+	margin-top: 15px;
 }

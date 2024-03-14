@@ -6,7 +6,7 @@ import com.bigode.testecomerce.entity.Cart;
 import com.bigode.testecomerce.entity.Order;
 import com.bigode.testecomerce.entity.UserClient;
 
-public class UserClientDTO {
+public class UserClientDTO{
     private Integer id;
     private String name;
     private String password;

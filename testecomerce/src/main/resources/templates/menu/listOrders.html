@@ -26,11 +26,10 @@
 		<div th:if="${not orderCheck}">
 			<h3 th:text="${msg}"></h3>
 		</div>
-		
-		<section th:if="${orderCheck}">
-			<h3 class="offset-3">Seus pedidos</h3>
+		<h3 class="offset-3">Seus pedidos</h3>
+		<br><hr style="width: 800px"><br>
+		<section id="listOrdes" th:if="${orderCheck}">
 			
-			<br><hr style="width: 800px"><br>
 			
 			<div class="pedido" th:each="order : ${listaPedidos}">
 				
@@ -39,17 +38,23 @@
 						<p>Código do pedido:  [[${order.id}]]</p>
 						<p class="mb-2">[[${order.dateTime}]]</p>
 						<hr>
-						<div class="row row-cols-auto mt-2"> 
-							<img class="col" alt="" src="img/imagemProduto.jpg" style="width: 120px">
-							<div class="col">
-								<p>[[${productsOrder.name}]]</p>
-								<p>R$: [[${productsOrder.price}]]</p>
-								<br>
-								<p>Status de envio: [[${order.categoryShipping}]]</p>
+						<div class="row row-cols-auto mt-2 divGeral"> 
+							<div class="col d-flex">
+								<img alt="" src="img/imagemProduto.jpg" style="width: 120px">
+								<div style="margin-left: 30px">
+									<p>[[${productsOrder.name}]]</p>
+									<p>R$: [[${productsOrder.price}]]</p>
+									<br>
+									<p>Status de envio: [[${order.categoryShipping}]]</p>
+								</div>
 							</div>
-							<div class="col offset-4">
-								<button class="btn btn-primary">Ver produto</button> <br><br>
-								<button class="btn btn-secondary">Comprar mais</button>
+							<div class="col divButtons">
+								<form method="post" th:action="@{'/saveProdSession/' + ${productsOrder.id}}">
+									<button type="submit" class="btn btn-primary btnMain">Ver produto</button>
+								</form>
+								
+								<a th:href="@{/}"class="btn btn-secondary btnMain">Comprar mais</a>
+								
 							</div>
 						</div>
 					</div>
