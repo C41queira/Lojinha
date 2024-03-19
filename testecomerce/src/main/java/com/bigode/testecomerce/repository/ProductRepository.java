@@ -27,4 +27,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	@Query("SELECT p FROM Product p WHERE p.categoryProduct = :categoria AND p.price >= :valorMinimo AND p.price <= :valorMaximo ")
 	public List<Product> findByPriceBetween(CategoryProduct categoria ,Double valorMinimo, Double valorMaximo); 
+	
+	//@Query("SELECT p FROM Product p WHERE p.name = :search")
+	public List<Product> findByNameContainingIgnoreCase(String search);
 }

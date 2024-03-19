@@ -21,7 +21,7 @@ formsPrice.addEventListener('click', (event)=>{
 	}
 		
 	listPrice.forEach((price)=>{
-		let card = price.parentNode.parentNode; 
+		let card = price.parentNode.parentNode.parentNode; 
 		card.classList.remove('none'); 
 		
 		var number = Number(price.innerHTML.replace(/R\$: /g, ''));

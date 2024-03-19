@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/produtos/eletronicosStyle.css">
 <link rel="stylesheet" href="css/sideBarStyle.css">
 
-<title>Produtos Eletronicos</title>
+<title>Busca Produtos</title>
 </head>
 <body>
 
@@ -22,7 +22,7 @@
 	
 		<br>
 		<div class="container">
-			<h2 class="m-3">Produtos Eletronicos</h2>
+			<h2 class="m-3">Produtos Encontrados</h2>
 			<hr>
 		</div>
 		
@@ -84,7 +84,7 @@
 	
 		<section class="container offset-1">
 			<div class="row">
-				<div class="card m-3" style="width: 288px;" th:each="produto : ${filter}">
+				<div class="card m-3" style="width: 288px;" th:each="produto : ${produtos_encontrados}">
 					<form class="formsProdSession" method="post" th:action="@{'/saveProdSession/' + ${produto.id}}">
 						<img class="card-img-top" alt="Imagem do produto" src="img/imagemProduto.jpg" style="width: 275px">
 						<div class="card-body text-center">

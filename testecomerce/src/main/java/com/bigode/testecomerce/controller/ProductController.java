@@ -1,11 +1,14 @@
 package com.bigode.testecomerce.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigode.testecomerce.entity.Product;
@@ -100,6 +103,34 @@ public class ProductController {
 		session.setAttribute("selectedProd", product);
 		
 		return "redirect:/produto";
+	}
+	
+	@GetMapping("/produtos_encontrados")
+	public ModelAndView pageSearchProducts(HttpSession session) {
+		ModelAndView mv = new ModelAndView(); 
+		mv.setViewName("pages/produtosEncontrados");
+		
+		List<Product> produtosEncontrados = (List<Product>) session.getAttribute("produtosEncontrados"); 
+		
+		mv.addObject("produtos_encontrados", produtosEncontrados); 
+		mv.addObject("product", new Product()); 
+		
+		return mv; 
+	}
+	
+	@PostMapping("/searchProduct")
+	public String searchProduct(@RequestParam(required = false) String name, HttpSession session) {
+		List<Product> produtosEncontrados; 
+		
+		if(name == null || name.trim().isEmpty()) {
+			produtosEncontrados = service.findAll();
+		}else {
+			produtosEncontrados = service.produtosEncontrados(name);
+		}
+		
+		session.setAttribute("produtosEncontrados", produtosEncontrados); 
+		
+		return "redirect:/produtos_encontrados";
 	}
 
 }

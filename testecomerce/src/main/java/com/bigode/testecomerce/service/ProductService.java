@@ -62,6 +62,10 @@ public class ProductService {
 	        }
         
     }
+	 
+	 public List<Product> produtosEncontrados(String search){
+		 return repository.findByNameContainingIgnoreCase(search);
+	 }
 
     private void updateData(Product entity, Product product) {
         entity.setCart(product.getCart());

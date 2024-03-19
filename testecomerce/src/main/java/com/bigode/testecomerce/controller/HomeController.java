@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigode.testecomerce.entity.Product;
 import com.bigode.testecomerce.repository.ProductRepository;
 	
 
@@ -24,6 +25,7 @@ public class HomeController {
 		mv.addObject("moveis", repository.findByCategoriMoveis());
 		mv.addObject("informatica", repository.findByCategoriInformatica());
 		mv.addObject("gamer", repository.findByCategoriGamer());
+		mv.addObject("product", new Product());
 		
 		return mv; 
 	}
