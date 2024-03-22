@@ -13,10 +13,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
-@DiscriminatorValue(value = "cliente")
 @Table(name = "cliente")
 public class UserClient extends User {
-	
+
 	@Column(name = "email")
 	@Email
 	private String email; 

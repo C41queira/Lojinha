@@ -5,18 +5,19 @@ import com.bigode.testecomerce.entity.enums.CategoryEmployee;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 
 @Entity
-@DiscriminatorValue(value = "funcionarios")
 @Table(name = "funcionario")
 public class UserEmployee extends User {
-	
 
 	@Column(name = "codigoFuncionario")
 	private String codEmployee; 
 
 	@Column(name = "cargo")
+	@Enumerated(EnumType.STRING)
 	private CategoryEmployee jobTitle;
 	
 	public UserEmployee() {

@@ -10,6 +10,7 @@ import com.bigode.testecomerce.entity.enums.CategoryShipping;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Order {
 	@Column(name = "order_price")
 	private Double totalValue = 0.0; 
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(name="status_entrega")
 	private CategoryShipping categoryShipping; 
 	

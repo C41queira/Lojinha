@@ -112,14 +112,13 @@ public class ProductController {
 		
 		List<Product> produtosEncontrados = (List<Product>) session.getAttribute("produtosEncontrados"); 
 		
-		mv.addObject("produtos_encontrados", produtosEncontrados); 
-		mv.addObject("product", new Product()); 
+		mv.addObject("produtos_encontrados", produtosEncontrados);
 		
 		return mv; 
 	}
 	
 	@PostMapping("/searchProduct")
-	public String searchProduct(@RequestParam(required = false) String name, HttpSession session) {
+	public String searchProduct(@RequestParam(value = "buscaProduto") String name, HttpSession session) {
 		List<Product> produtosEncontrados; 
 		
 		if(name == null || name.trim().isEmpty()) {

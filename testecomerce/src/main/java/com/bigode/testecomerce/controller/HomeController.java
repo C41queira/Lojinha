@@ -25,7 +25,6 @@ public class HomeController {
 		mv.addObject("moveis", repository.findByCategoriMoveis());
 		mv.addObject("informatica", repository.findByCategoriInformatica());
 		mv.addObject("gamer", repository.findByCategoriGamer());
-		mv.addObject("product", new Product());
 		
 		return mv; 
 	}

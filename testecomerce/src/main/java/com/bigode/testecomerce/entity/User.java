@@ -1,8 +1,12 @@
 package com.bigode.testecomerce.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,10 +18,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "usuarios")
-public class User {
-	
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User{
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "userId")

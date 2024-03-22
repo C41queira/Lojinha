@@ -22,8 +22,8 @@
 
         <div>
             <div class="divHeader" id="mainHeader">
-                <form id="formHeader" action="/searchProduct" th:object="${product}" method="post">
-                    <input type="search" name="buscaProduto" id="searchProduto" th:field="*{name}">	
+                <form id="formHeader" th:action="@{/searchProduct}" method="post">
+                    <input type="search" name="buscaProduto" id="searchProduto" th:value="*{name}">	
                     <button type="submit" id="btnSearch"><img src="img/lupaIcon.png" alt="Busca" class="icon"></button>
                 </form>
 
